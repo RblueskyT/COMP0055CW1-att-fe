@@ -16,6 +16,24 @@ const routes = [
     component: () => import('../views/DashboardView.vue')
   },
   {
+    path: '/forcelogin',
+    name: 'forcelogin',
+    meta: { title: 'Vulnerable Application - forcelogin' },
+    component: () => import('../views/ForceLoginView.vue')
+  },
+  {
+    path: '/sessionswapping_github_sf',
+    name: 'sessionswapping_github_sf',
+    meta: { title: 'Vulnerable Application - sessionswapping_github_sf' },
+    component: () => import('../views/SessionSwappingView.vue')
+  },
+  {
+    path: '/sessionswapping_twitter',
+    name: 'sessionswapping_twitter',
+    meta: { title: 'Vulnerable Application - sessionswapping_twitter' },
+    component: () => import('../views/SessionSwappingTwitterView.vue')
+  },
+  {
     path: '/example',
     name: 'example',
     meta: { title: 'Attacker - Example Page' },
