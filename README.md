@@ -2,6 +2,7 @@
 
 Group 7 Attacker Front End
 Learn Vue3: https://vuejs.org/
+Please run the attacker's frontend on port 8081
 
 ## Project setup
 ```
