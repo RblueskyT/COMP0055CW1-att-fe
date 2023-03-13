@@ -34,6 +34,12 @@ const routes = [
     component: () => import('../views/SessionSwappingTwitterView.vue')
   },
   {
+    path: '/auto_sessionswaping_github',
+    name: 'auto_sessionswaping_github',
+    meta: { title: 'Vulnerable Application - auto_sessionswaping_github' },
+    component: () => import('../views/AutoSessionSwapingGithubView.vue')
+  },
+  {
     path: '/example',
     name: 'example',
     meta: { title: 'Attacker - Example Page' },

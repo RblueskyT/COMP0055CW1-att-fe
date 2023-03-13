@@ -25,6 +25,9 @@
     <button type="button"  @click="pushSessionSwappingViewGithubSF()">Demonstrate Session Swapping Github SF</button>
     <br><br>
     <button type="button" @click="pushSessionSwappingViewTwitter()">Demonstrate Session Swapping Twitter</button>
+    <br><br>
+    <button type="button"  @click="pushAutoSessionSwappingGithub()">Demonstrate Session Swapping Github SF</button>
+    <br><br>
   </div>
 </template>
 
@@ -61,6 +64,13 @@
       const pushSessionSwappingViewTwitter = ()=>{
         router.push({
           name: 'sessionswapping_twitter',
+          });
+
+        };
+        
+        const pushAutoSessionSwappingGithub = ()=>{
+        router.push({
+          name: 'auto_sessionswaping_github',
           });
         };
       
@@ -104,6 +114,7 @@
       pushForceLoginView,
       pushSessionSwappingViewGithubSF,
       pushSessionSwappingViewTwitter,
+      pushAutoSessionSwappingGithub,
     };
     },
     

@@ -20,7 +20,7 @@ export default defineComponent({
 
     const getTestMsg = async () => {
       try {
-        const resData = await axios.get('http://localhost:8081/example_api/');
+        const resData = await axios.get('http://localhost:8001/example_api/');
         if (resData.status === 200) {
           test_msg.value = resData.data;
         } else {
@@ -35,7 +35,7 @@ export default defineComponent({
 
     const handleSubmit = async () => {
       try {
-        const resData = await axios.post('http://localhost:8081/example_api/post_demo', {username: form_data.value.username});
+        const resData = await axios.post('http://localhost:8001/example_api/post_demo', {username: form_data.value.username});
         if (resData.status === 200) {
           returned_msg.value = resData.data;
         } else {
