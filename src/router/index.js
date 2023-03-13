@@ -10,10 +10,34 @@ const routes = [
     redirect: 'dashboard',
   },
   {
-    path: '/dashboard',
-    name: 'dashboard',
-    meta: { title: 'Attacker - Dashboard' },
-    component: () => import('../views/DashboardView.vue')
+    path: '/xss',
+    name: 'xss',
+    meta: { title: 'Attacker - XSS' },
+    component: () => import('../views/XSSView.vue')
+  },
+  {
+    path: '/forcelogin',
+    name: 'forcelogin',
+    meta: { title: 'Vulnerable Application - forcelogin' },
+    component: () => import('../views/ForceLoginView.vue')
+  },
+  {
+    path: '/sessionswapping_github_sf',
+    name: 'sessionswapping_github_sf',
+    meta: { title: 'Vulnerable Application - sessionswapping_github_sf' },
+    component: () => import('../views/SessionSwappingView.vue')
+  },
+  {
+    path: '/sessionswapping_twitter',
+    name: 'sessionswapping_twitter',
+    meta: { title: 'Vulnerable Application - sessionswapping_twitter' },
+    component: () => import('../views/SessionSwappingTwitterView.vue')
+  },
+  {
+    path: '/auto_sessionswaping_github',
+    name: 'auto_sessionswaping_github',
+    meta: { title: 'Vulnerable Application - auto_sessionswaping_github' },
+    component: () => import('../views/AutoSessionSwapingGithubView.vue')
   },
   {
     path: '/example',
