@@ -86,8 +86,8 @@
       },
       
     });
-    
-  </script>
+  
+</script>
   
   <style>
     /* .flex-container {
