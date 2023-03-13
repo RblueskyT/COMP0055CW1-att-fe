@@ -44,7 +44,7 @@
         const evil_link = ref('');
         const getCode = async () => {
         try {
-          const resData = await axios.get('http://localhost:8083/oauthcode/get_code');
+          const resData = await axios.get('http://localhost:8001/oauthcode/get_code');
           console.log(resData)
           if (resData.status === 200) {
               const code = resData.data;

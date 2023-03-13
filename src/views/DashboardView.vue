@@ -100,6 +100,7 @@
       // };
       // getCode();
       return {
+        router,
         evil_link,
         // forceLogin,
         pushForceLoginView,

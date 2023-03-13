@@ -10,6 +10,12 @@ const routes = [
     redirect: 'dashboard',
   },
   {
+    path: '/dashboard',
+    name: 'dashboard',
+    meta: { title: 'Attacker - Dashboard' },
+    component: () => import('../views/DashboardView.vue')
+  },
+  {
     path: '/xss',
     name: 'xss',
     meta: { title: 'Attacker - XSS' },
