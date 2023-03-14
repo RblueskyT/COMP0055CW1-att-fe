@@ -43,7 +43,7 @@ export default defineComponent({
 
     const XSSOne = async () => {
       XSSPostForm.value.username = XSSInputOne.value;
-      XSSPostForm.value.post_title = 'XSSONE POST';
+      XSSPostForm.value.post_title = 'XSSOne POST';
       XSSPostForm.value.post_content = '<iframe src="https://github.com/login/oauth/authorize?client_id=d83ac1ef7822f3087e4b&redirect_uri=http://localhost:8080/login&scope=user"></iframe>';
       // We only indicate that iframe is impossible here
       try {
