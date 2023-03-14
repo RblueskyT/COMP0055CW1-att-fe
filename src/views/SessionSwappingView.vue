@@ -1,7 +1,7 @@
 <template>
     <div class="dashboard">
       <h1>This is the Attacker's Website</h1>
-      <h2>Session Swapping for Github Server Flow Login</h2>
+      <h2>Session Swapping for Dropbox Server Flow Login</h2>
       </div>
           <img src="@/assets/cat-cats.gif">
           <br>
