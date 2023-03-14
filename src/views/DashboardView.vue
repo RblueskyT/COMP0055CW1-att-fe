@@ -21,14 +21,13 @@
       </iframe> -->
       <button type="button"  @click="router.push({name: 'xss'})">Demonstrate XSS</button>
       <br><br>
+      <button type="button"  @click="pushSessionSwappingViewGithubSF()">Demonstrate Session Swapping Dropbox (recommended)</button>
+      <br><br>
+      <button type="button"  @click="pushAutoSessionSwappingGithub()">Demonstrate Automated Session Swapping Github</button>
+      <br><br>
       <button type="button"  @click="pushForceLoginView()">Demonstrate Force Login</button>
-      <br><br>
-      <button type="button"  @click="pushSessionSwappingViewGithubSF()">Demonstrate Session Swapping Github SF</button>
-      <br><br>
-      <button type="button" @click="pushSessionSwappingViewTwitter()">Demonstrate Session Swapping Twitter</button>
-      <br><br>
-      <button type="button"  @click="pushAutoSessionSwappingGithub()">Demonstrate Session Swapping Github SF</button>
-      <br><br>
+      <p>----------------------------------------------------------------------</p>
+      <button type="button" @click="pushSessionSwappingViewTwitter()">Demonstrate Session Swapping Twitter (alternative)</button>
     </div>
   </template>
   

